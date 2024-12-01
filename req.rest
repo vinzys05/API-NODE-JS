@@ -1,0 +1,228 @@
+### USER
+
+### registrasi
+POST http://127.0.0.1:5000/user/register
+Content-Type: application/json
+
+{
+    "username": "ba",
+    "password": "password123",
+    "email": "c@example.com",
+    "role": "customer"
+}
+
+### update
+PUT http://localhost:5000/user/update/2
+Content-Type: application/json
+
+{
+    "username": "Username",
+    "email": "Email@example.com",
+    "password": "newPassword123",
+    "role": "customer"
+}
+
+### login 
+POST http://127.0.0.1:5000/user/login
+Content-Type: application/json
+
+{
+    "username": "Username",
+    "password": "newPassword123"
+}
+
+###
+GET http://localhost:5000/user/getall
+
+###
+GET http://localhost:5000/user/get/1
+
+
+### CUSTOMER
+
+###
+POST http://localhost:5000/customer/post
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyLCJ1c2VybmFtZSI6IlVzZXJuYW1lIiwiZW1haWwiOiJFbWFpbEBleGFtcGxlLmNvbSIsInJvbGUiOiJjdXN0b21lciIsImlhdCI6MTczMTc4MjYzNiwiZXhwIjoxNzMxNzg2MjM2fQ.Sn_C0Z-VWQWSzRe7m6_YcLxw-uR6kox2_mdxOCIZX94
+Content-Type: application/json
+
+{
+  "full_name": "John Doe",
+  "phone": "08123456789"
+}
+
+###
+PUT http://localhost:5000/customer/update/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyLCJ1c2VybmFtZSI6IlVzZXJuYW1lIiwiZW1haWwiOiJFbWFpbEBleGFtcGxlLmNvbSIsInJvbGUiOiJjdXN0b21lciIsImlhdCI6MTczMTc4MjYzNiwiZXhwIjoxNzMxNzg2MjM2fQ.Sn_C0Z-VWQWSzRe7m6_YcLxw-uR6kox2_mdxOCIZX94
+Content-Type: application/json
+
+{
+  "full_name": "John Smith",
+  "phone": "08198765432"
+}
+
+###
+GET http://localhost:5000/customer/getall
+###
+GET http://localhost:5000/customer/get/1
+
+
+### KATEGORI
+
+###
+POST http://localhost:5000/category/post
+Content-Type: application/json
+
+{
+  "category_name": "Android"
+}
+
+###
+GET http://localhost:5000/category/getall
+
+###
+GET http://localhost:5000/category/get/1
+
+###
+PUT http://localhost:5000/category/update/1
+Content-Type: application/json
+
+{
+  "category_name": "Laptop"
+}
+
+###
+DELETE http://localhost:5000/category/delete/1
+
+
+### BRAND/MEREK
+
+###
+POST http://localhost:5000/brand/post
+Content-Type: application/json
+
+{
+  "brand_name": "ROG PHONE"
+}
+
+###
+PUT http://localhost:5000/brand/update/1
+Content-Type: application/json
+
+{
+  "brand_name": "XIAOMI"
+}
+
+###
+DELETE http://localhost:5000/brand/delete/1
+
+###
+GET http://localhost:5000/brand/getall
+
+###
+GET http://localhost:5000/brand/get/2
+
+
+
+###PRODUCTS
+
+###
+POST http://localhost:5000/product/post
+Content-Type: application/json
+
+{
+  "product_name": "POCO  Pro",
+  "description": "HP Andorid dengan performa sangat tinggi",
+  "price": 15000000,
+  "stock": 3,
+  "category_id": 2,
+  "brand_id": 2,
+  "image": "Screenshot 2024-11-14 084957.png" 
+}
+
+###
+GET http://localhost:5000/product/getall
+
+###
+GET http://localhost:5000/product/get/3
+
+###
+DELETE http://localhost:5000/product/delete/3
+
+
+### ORDER
+
+###
+GET http://localhost:5000/order/getall
+
+###
+GET http://localhost:5000/order/get/3
+
+###
+POST http://localhost:5000/order/post
+Content-Type: application/json
+
+{
+  "customer_id": 1,
+  "total_price": 1000000
+}
+
+### buat cancel order
+PUT http://localhost:5000/order/cancel/2
+
+### bisa dipakai setelah membayar pada payment
+PUT http://localhost:5000/order/pay/3
+
+
+### PAYMENT
+
+###
+GET http://localhost:5000/payment/getall
+
+###
+GET http://localhost:5000/payment/get/3
+
+###
+POST http://localhost:5000/payment/post
+Content-Type: application/json
+
+{
+  "order_id": 3,
+  "amount": 1000000,
+  "method": "transfer"
+}
+
+###  ORDER ITEMS
+
+###
+POST http://localhost:5000/orderitem/post
+Content-Type: application/json
+
+{
+    "order_id": 1,
+    "items": [
+        {
+            "product_id": 4,
+            "quantity": 2,
+            "price": 15000000
+        },
+        {
+            "product_id": 5,
+            "quantity": 1,
+            "price": 15000000
+        }
+    ]
+}
+
+###
+GET http://localhost:5000/orderitem/get/1
+
+###
+GET http://localhost:5000/orderitem/getall
+
+### INVENTORY LOGS
+
+###
+GET http://localhost:5000/inventorylog/getall
+
+###
+GET http://localhost:5000/inventorylog/get/1
