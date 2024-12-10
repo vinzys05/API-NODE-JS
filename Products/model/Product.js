@@ -11,8 +11,17 @@ const Product = db.define('Product', {
         type: DataTypes.STRING(100),
         allowNull: false
     },
-    description: {
-        type: DataTypes.TEXT
+    colour: {
+        type: DataTypes.STRING(50),
+        allowNull: true // Optional field
+    },
+    variant: {
+        type: DataTypes.STRING(50),
+        allowNull: true // Optional field
+    },
+    specs: {
+        type: DataTypes.TEXT,
+        allowNull: true // Optional field
     },
     price: {
         type: DataTypes.DECIMAL(10, 2),

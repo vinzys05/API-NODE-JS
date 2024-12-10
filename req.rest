@@ -130,13 +130,31 @@ POST http://localhost:5000/product/post
 Content-Type: application/json
 
 {
-  "product_name": "POCO  Pro",
-  "description": "HP Andorid dengan performa sangat tinggi",
+  "product_name": "iPhone X",
+  "colour": "Silver",
+  "variant": "64 GB",
+  "specs": "OLED Display, A12 Bionic Chip",
   "price": 15000000,
-  "stock": 3,
+  "stock": 20,
   "category_id": 2,
   "brand_id": 2,
-  "image": "Screenshot 2024-11-14 084957.png" 
+  "image": "iphone_x.jpg"
+}
+
+###
+PUT http://localhost:5000/product/update/4
+Content-Type: application/json
+
+{
+  "product_name": "iPhone X",
+  "colour": "Silver",
+  "variant": "64 GB",
+  "specs": "OLED Display, A12 Bionic Chip",
+  "price": 15000000,
+  "stock": 10,
+  "category_id": 2,
+  "brand_id": 2,
+  "image": "iphone_x.jpg"
 }
 
 ###

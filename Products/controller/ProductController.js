@@ -46,12 +46,14 @@ class ProductController {
     // Menambahkan produk baru
     static async createProduct(req, res) {
         try {
-            const { product_name, description, price, stock, category_id, brand_id } = req.body;
+            const { product_name, colour, variant, specs, price, stock, category_id, brand_id } = req.body;
             const image = req.file ? `uploads/images/${req.file.filename}` : null;
 
             const newProduct = await Product.create({
                 product_name,
-                description,
+                colour,
+                variant,
+                specs,
                 price,
                 stock,
                 category_id,
@@ -68,16 +70,19 @@ class ProductController {
         }
     }
 
+
     // Mengupdate produk berdasarkan ID
     static async updateProduct(req, res) {
         try {
-            const { product_name, description, price, stock, category_id, brand_id } = req.body;
+            const { product_name, colour, variant, specs, price, stock, category_id, brand_id } = req.body;
             const image = req.file ? `uploads/images/${req.file.filename}` : null;
-
+        
             const updatedProduct = await Product.update(
                 {
                     product_name,
-                    description,
+                    colour,
+                    variant,
+                    specs,
                     price,
                     stock,
                     category_id,
@@ -86,16 +91,17 @@ class ProductController {
                 },
                 { where: { product_id: req.params.id } }
             );
-
+        
             if (updatedProduct[0] === 0) {
                 return res.status(404).json({ message: 'Product not found or no changes made' });
             }
-
+        
             res.status(200).json({ message: 'Product updated successfully' });
         } catch (error) {
             res.status(500).json({ message: 'Error updating product', error });
         }
     }
+
 
     // Menghapus produk berdasarkan ID
     static async deleteProduct(req, res) {

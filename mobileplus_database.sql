@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS `brands` (
   PRIMARY KEY (`brand_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table mobileplus.brands: ~0 rows (approximately)
+-- Dumping data for table mobileplus.brands: ~1 rows (approximately)
 INSERT INTO `brands` (`brand_id`, `brand_name`, `created_at`) VALUES
 	(2, 'ROG PHONE', '2024-11-17 07:15:17');
 
@@ -87,7 +87,7 @@ CREATE TABLE IF NOT EXISTS `orders` (
   CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`customer_id`) ON DELETE SET NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table mobileplus.orders: ~2 rows (approximately)
+-- Dumping data for table mobileplus.orders: ~3 rows (approximately)
 INSERT INTO `orders` (`order_id`, `customer_id`, `order_date`, `status`, `total_price`) VALUES
 	(1, 1, '2024-11-18 05:33:36', 'cancelled', 45000000.00),
 	(2, 1, '2024-11-18 05:36:17', 'cancelled', 1000000.00),
@@ -135,7 +135,9 @@ INSERT INTO `payments` (`payment_id`, `order_id`, `payment_date`, `amount`, `met
 CREATE TABLE IF NOT EXISTS `products` (
   `product_id` int NOT NULL AUTO_INCREMENT,
   `product_name` varchar(100) NOT NULL,
-  `description` text,
+  `colour` varchar(50) DEFAULT NULL,
+  `variant` varchar(50) DEFAULT NULL,
+  `specs` text,
   `price` decimal(10,2) NOT NULL,
   `stock` int NOT NULL,
   `category_id` int DEFAULT NULL,
@@ -147,12 +149,13 @@ CREATE TABLE IF NOT EXISTS `products` (
   KEY `brand_id` (`brand_id`),
   CONSTRAINT `products_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`category_id`) ON DELETE SET NULL,
   CONSTRAINT `products_ibfk_2` FOREIGN KEY (`brand_id`) REFERENCES `brands` (`brand_id`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table mobileplus.products: ~2 rows (approximately)
-INSERT INTO `products` (`product_id`, `product_name`, `description`, `price`, `stock`, `category_id`, `brand_id`, `image`, `created_at`) VALUES
-	(4, 'POCO X3 Pro', 'HP Andorid dengan performa sangat tinggi', 15000000.00, 3, 2, 2, NULL, '2024-11-18 10:56:10'),
-	(5, 'POCO  Pro', 'HP Andorid dengan performa sangat tinggi', 15000000.00, 3, 2, 2, NULL, '2024-11-18 10:56:16');
+INSERT INTO `products` (`product_id`, `product_name`, `colour`, `variant`, `specs`, `price`, `stock`, `category_id`, `brand_id`, `image`, `created_at`) VALUES
+	(4, 'iPhone X', 'Silver', '64 GB', 'OLED Display, A12 Bionic Chip', 15000000.00, 10, 2, 2, NULL, '2024-11-18 10:56:10'),
+	(5, 'POCO  Pro', NULL, NULL, NULL, 15000000.00, 3, 2, 2, NULL, '2024-11-18 10:56:16'),
+	(9, 'iPhone X', 'Silver', '64 GB', 'OLED Display, A12 Bionic Chip', 15000000.00, 20, 2, 2, NULL, '2024-12-10 12:38:30');
 
 -- Dumping structure for table mobileplus.users
 CREATE TABLE IF NOT EXISTS `users` (
